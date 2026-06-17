@@ -70,7 +70,7 @@ func (e *dockerRenderEngine) CheckContextSupport() error {
 	if runtime.GOOS == "windows" {
 		return errors.New("context handling via --context-values/--context-files/--include-context is not supported on Windows")
 	}
-	if host := os.Getenv("DOCKER_HOST"); host != "" && !strings.HasPrefix(host, "unix://") {
+	if host := os.Getenv("DOCKER_HOST"); host == "" {
 		return errors.New("context handling via --context-values/--context-files/--include-context requires a local Docker daemon or Crossplane controller binary")
 	}
 
